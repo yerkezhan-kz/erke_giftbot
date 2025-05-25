@@ -7,7 +7,8 @@ const TELEGRAM_API = `https://api.telegram.org/bot${TOKEN}`;
 
 app.use(express.json());
 
-app.post('/webhook', async (req, res) => {
+// Слушаем КОРЕНЬ "/" вместо /webhook
+app.post('/', async (req, res) => {
   const msg = req.body.message;
   const text = msg?.text;
   const chatId = msg?.chat?.id;
@@ -30,6 +31,7 @@ app.post('/webhook', async (req, res) => {
     });
   }
 
+  console.log('ОТВЕТ 200 ОТПРАВЛЕН');
   res.sendStatus(200);
 });
 
