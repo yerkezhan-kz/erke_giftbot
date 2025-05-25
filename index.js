@@ -21,13 +21,13 @@ if (!text || !chatId) return res.sendStatus(200);
 
     console.log('ИЗВЛЕЧЕН ПАРАМЕТР:', param);
 
-  if (param === 'kontent') {
+  if (text === '/start_kontent') {
     await axios.post(`${TELEGRAM_API}/sendDocument`, {
       chat_id: chatId,
       document: 'BQACAgIAAxkBAAMXaDK1dsusPIOjTeazmInLB8czQo4AAmJ4AAJg_pFJocjiQ4aupnU2BA',
       caption: 'Вот гайд “Контент, который продаёт” — выкладывай и взаимодействуй с аудиторией эффективно.'
     });
-  } else if (param === 'smysl') {
+  } else if (text === '/start_smysl') {
     await axios.post(`${TELEGRAM_API}/sendDocument`, {
       chat_id: chatId,
       document: 'BQACAgIAAxkBAAMYaDK1dgnOCVkDeW16pF9BVkTTC_IAAmF4AAJg_pFJs8eZWW6bcbY2BA',
