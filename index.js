@@ -12,10 +12,14 @@ app.post('/webhook', async (req, res) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
-  if (!text || !chatId) return res.sendStatus(200);
+  console.log('ПОЛУЧЕН ТЕКСТ:', text);
+  
+if (!text || !chatId) return res.sendStatus(200);
 
   if (text.startsWith('/start')) {
-  const param = text.split(' ')[1] || text.split('/start')[1]?.trim();
+    const param = text.split(' ')[1] || text.split('/start')[1]?.trim();
+
+    console.log('ИЗВЛЕЧЕН ПАРАМЕТР:', param);
 
   if (param === 'kontent') {
     await axios.post(`${TELEGRAM_API}/sendDocument`, {
