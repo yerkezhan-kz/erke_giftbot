@@ -13,28 +13,22 @@ app.post('/webhook', async (req, res) => {
   const chatId = msg?.chat?.id;
 
   console.log('ПОЛУЧЕН ТЕКСТ:', text);
-  
-if (!text || !chatId) return res.sendStatus(200);
 
-  if (text.startsWith('/start')) {
-    const param = text.split(' ')[1] || text.split('/start')[1]?.trim();
-
-    console.log('ИЗВЛЕЧЕН ПАРАМЕТР:', param);
+  if (!text || !chatId) return res.sendStatus(200);
 
   if (text === '/start_kontent') {
-  await axios.post(`${TELEGRAM_API}/sendDocument`, {
-    chat_id: chatId,
-    document: 'BQACAgIAAxkBAAMXaDK1dsusPIOjTeazmInLB8czQo4AAmJ4AAJg_pFJocjiQ4aupnU2BA',
-    caption: 'Вот гайд “Контент, который продаёт” — выкладывай и взаимодействуй с аудиторией эффективно.'
-  });
-} else if (text === '/start_smysl') {
-  await axios.post(`${TELEGRAM_API}/sendDocument`, {
-    chat_id: chatId,
-    document: 'BQACAgIAAxkBAAMYaDK1dgnOCVkDeW16pF9BVkTTC_IAAmF4AAJg_pFJs8eZWW6bcbY2BA',
-    caption: 'Вот гайд “10 смыслов клиентки”. Это тот самый материал из рекламы — выкладывай контент, который реально трогает.'
-  });
-}
-
+    await axios.post(`${TELEGRAM_API}/sendDocument`, {
+      chat_id: chatId,
+      document: 'BQACAgIAAxkBAAMXaDK1dsusPIOjTeazmInLB8czQo4AAmJ4AAJg_pFJocjiQ4aupnU2BA',
+      caption: 'Вот гайд “Контент, который продаёт” — выкладывай и взаимодействуй с аудиторией эффективно.'
+    });
+  } else if (text === '/start_smysl') {
+    await axios.post(`${TELEGRAM_API}/sendDocument`, {
+      chat_id: chatId,
+      document: 'BQACAgIAAxkBAAMYaDK1dgnOCVkDeW16pF9BVkTTC_IAAmF4AAJg_pFJs8eZWW6bcbY2BA',
+      caption: 'Вот гайд “10 смыслов клиентки”. Это тот самый материал из рекламы — выкладывай контент, который реально трогает.'
+    });
+  }
 
   res.sendStatus(200);
 });
